@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post } = require("../models");
+const { User, Post, Comment } = require("../models");
 
 router.get("/", async (req, res) => {
   if (!req.session.loggedIn) {
@@ -17,11 +17,25 @@ router.get("/", async (req, res) => {
           },
         ],
       });
-      console.log(dbdashData)
-      const dashContent = dbdashData.map((post) =>
-      post.get({ plain: true })
-    );
-      res.render("dashboard", { dashContent, loggedIn: req.session.loggedIn });
+      const dbCommData = await Comment.findAll({
+        where: {
+          user_id: req.session.user,
+        },
+        include: [
+          {
+            model: Post,
+            attributes: ["title"],
+          },
+        ],
+      });
+
+      const dashContent = dbdashData.map((post) => post.get({ plain: true }));
+      const dashComment = dbCommData.map((post) => post.get({ plain: true }));
+      res.render("dashboard", 
+      { dashContent,
+        dashComment, 
+      loggedIn: req.session.loggedIn 
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
