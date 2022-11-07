@@ -48,7 +48,7 @@ router.post("/logout", (req, res) => {
   }
 });
 
-router.post("/signup", async(req,res) => {
+router.post("/signup", async (req, res) => {
   try {
     const dbUserData = await User.create({
       username: req.body.username,
@@ -64,9 +64,6 @@ router.post("/signup", async(req,res) => {
     console.log(err);
     res.status(500).json(err);
   }
-
-})
-
-
+});
 
 module.exports = router;

@@ -1,10 +1,10 @@
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
+const sequelize = require("../config/connection");
 
 class User extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
+  checkPassword(givenpass) {
+    return bcrypt.compareSync(givenpass, this.password);
   }
 }
 
@@ -33,18 +33,19 @@ User.init(
       async beforeCreate(newUserData) {
         newUserData.password = await bcrypt.hashSync(newUserData.password, 10);
         return newUserData;
-      },async beforeBulkCreate(Users) {
-        for(const user of Users){
-          const {password} = user
-        user.password = await bcrypt.hashSync(password, 10);
-      }
+      },
+      async beforeBulkCreate(Users) {
+        for (const user of Users) {
+          const { password } = user;
+          user.password = await bcrypt.hashSync(password, 10);
+        }
       },
     },
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: "user",
   }
 );
 

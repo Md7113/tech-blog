@@ -31,10 +31,10 @@ router.get("/", async (req, res) => {
 
       const dashContent = dbdashData.map((post) => post.get({ plain: true }));
       const dashComment = dbCommData.map((post) => post.get({ plain: true }));
-      res.render("dashboard", 
-      { dashContent,
-        dashComment, 
-      loggedIn: req.session.loggedIn 
+      res.render("dashboard", {
+        dashContent,
+        dashComment,
+        loggedIn: req.session.loggedIn,
       });
     } catch (err) {
       console.log(err);

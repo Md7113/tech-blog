@@ -1,13 +1,13 @@
 <div class="card">
-    <div class="blog-posts">
-        <h2 class="title">{{title}}</h2>
-        <p class="content">{{content}}</p>
-        <h3 class="author">You created on {{format_date createdAt}}</h3>
-    </div>
-    <a href="/api/post/{{id}}">
+  <div class="blog-posts">
+    <h2 class="title">{{title}}</h2>
+    <p class="content">{{content}}</p>
+    <h3 class="author">You created on {{format_date createdAt}}</h3>
+  </div>
+  <a id="commentbtn" href="/api/post/{{id}}">
     <button class="comments-btn">Comments</button>
-    </a>
-    <div id="postId" style="visible:hidden;">{{id}}</div>
-    <button class="comments-btn" id="delete">Delete</button>
- 
+  </a>
+  <div id="postId" style="display: none;">{{id}}</div>
+  <button class="comments-btn" id="delete">Delete</button>
+
 </div>

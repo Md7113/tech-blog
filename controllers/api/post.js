@@ -6,7 +6,7 @@ router.get("/:id", async (req, res) => {
     res.redirect("/login");
   } else {
     try {
-        req.session.post = req.params.id
+      req.session.post = req.params.id;
       const dbPostData = await Post.findByPk(req.params.id, {
         include: [
           {
