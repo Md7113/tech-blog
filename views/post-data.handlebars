@@ -1,0 +1,16 @@
+<div class="card">
+    
+    <div class="blog-posts">
+        <h2 class="title">{{dashPost.title}}</h2>
+        <p class="content">{{dashPost.content}}</p>
+        <h3 class="author">{{dashPost.user.username}} on {{format_date dashPost.createdAt}}</h3>
+    </div>
+    <h2 class="title">Comments</h2>
+    {{#each dashComment as |com|}}
+    {{> post-com}}
+    {{/each}}
+    <button class="comments-btn" id="addCom">add comment</button>
+</div>
+
+
+  <script src="/js/comment.js"></script>

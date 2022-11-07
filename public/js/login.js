@@ -1,5 +1,3 @@
-
-
 const loginFormHandler = async (event) => {
     event.preventDefault();
     const username = document.querySelector('#username-login').value.trim();
@@ -11,18 +9,14 @@ const loginFormHandler = async (event) => {
         body: JSON.stringify({ username, password }),
         headers: { 'Content-Type': 'application/json' },
       });
-  
+      console.log(response)
       if (response.ok) {
-        document.location.replace('/');
+       document.location.replace('/');
       } else {
         alert('Failed to log in.');
       }
     }
   };
-
-
-
-
 
 
 document

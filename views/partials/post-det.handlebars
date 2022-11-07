@@ -1,8 +1,11 @@
 <div class="card">
+    
     <div class="blog-posts">
         <h2 class="title">{{title}}</h2>
         <p class="content">{{content}}</p>
         <h3 class="author">{{user.username}} on {{format_date createdAt}}</h3>
     </div>
+    <a href="/api/post/{{id}}">
     <button class="comments-btn">Comments</button>
+    </a>
 </div>
