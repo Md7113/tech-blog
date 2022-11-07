@@ -1,15 +1,18 @@
-const deletePost = async (event) => {
+const changePost = async (event) => {
+  console.log('ysy')
   event.preventDefault();
   const postid = document.querySelector("#postId").textContent;
+  console.log(postid)
   if (postid) {
-    const response = await fetch("/addpost/deletepost", {
-      method: "DELETE",
+    const response = await fetch("/update", {
+      method: "post",
       body: JSON.stringify({ postid }),
       headers: { "Content-Type": "application/json" },
-    });
-    window.location.href = "/dashboard";
+    }); 
+    console.log(response)
   }
+    window.location.href = "/update/con";
 };
 
-const deletevar = document.querySelector("#delete");
-deletevar.addEventListener("click", deletePost);
+const deletevar = document.querySelector("#update");
+deletevar.addEventListener("click", changePost);
